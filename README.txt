@@ -11,7 +11,7 @@ O site já possui:
 - Visual responsivo para celular;
 - Identidade visual Pub Beach Burg.
 
-WhatsApp configurado no site: (91) 98555-1234
+WhatsApp configurado no site: (91) 99100-9087
 Instagram: @pubbeachburg
 
 Para publicar, basta colocar esta pasta em um serviço de hospedagem estática (ex.: GitHub Pages, Netlify, Vercel ou similar).
