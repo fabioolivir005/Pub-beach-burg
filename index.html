@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090909">
+<title>Pub Beach Burg — Salinópolis</title>
+<style>
+:root{--bg:#080808;--panel:#111;--line:#292929;--cream:#f1eadc;--orange:#f28a12;--muted:#b7b0a5}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#241405 0,#080808 34%);color:var(--cream);font-family:Arial,Helvetica,sans-serif}
+header{position:sticky;top:0;z-index:10;background:rgba(7,7,7,.94);backdrop-filter:blur(10px);border-bottom:1px solid #2b1b0c}
+.wrap{max-width:1050px;margin:auto;padding:0 16px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 0}
+.logo{width:78px;height:60px;object-fit:cover;border-radius:12px;border:1px solid #5a3b18}
+.brand b{display:block;font-size:20px;letter-spacing:1px}.brand span{font-size:11px;color:var(--orange);letter-spacing:2px}
+.cart{background:var(--orange);color:#111;border:0;border-radius:999px;padding:11px 15px;font-weight:800;cursor:pointer}
+.hero{padding:44px 0 30px;text-align:center}.hero img{width:min(360px,80%);border-radius:22px;box-shadow:0 15px 60px #000;border:1px solid #4a2b0d}
+.hero h1{font-size:clamp(32px,8vw,62px);margin:18px 0 5px;text-transform:uppercase;letter-spacing:2px}.hero h1 span{color:var(--orange)}.hero p{color:var(--muted);margin:0}
+.badges{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:18px}.badge{border:1px solid #493015;border-radius:999px;padding:8px 12px;font-size:12px;background:#0e0d0b}
+nav{position:sticky;top:81px;z-index:8;background:#0b0b0b;border-bottom:1px solid #222;overflow:auto}.tabs{display:flex;gap:8px;padding:10px 0}.tab{white-space:nowrap;border:1px solid #333;background:#151515;color:#ddd;border-radius:999px;padding:9px 14px;cursor:pointer}.tab.active{background:var(--orange);color:#111;border-color:var(--orange);font-weight:800}
+section{padding:30px 0}.section-title{display:flex;align-items:end;justify-content:space-between;gap:10px;margin-bottom:16px}.section-title h2{margin:0;font-size:28px}.section-title p{margin:0;color:#8f8a82;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.card{background:linear-gradient(145deg,#151515,#0d0d0d);border:1px solid #2b2b2b;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px #0005}.pic{height:210px;background:#050505}.pic img{width:100%;height:100%;object-fit:cover}.body{padding:15px}.body h3{margin:0 0 7px;font-size:20px}.desc{font-size:13px;color:#aaa;line-height:1.45;min-height:38px}.price{font-size:22px;font-weight:900;color:var(--orange);margin:12px 0}.add{width:100%;padding:12px;border:0;border-radius:12px;background:#e9e0d0;color:#111;font-weight:900;cursor:pointer}.add:hover{background:var(--orange)}
+.drink .pic{height:150px}.note{color:#aaa;font-size:13px;line-height:1.5;background:#111;border:1px solid #292929;border-radius:16px;padding:15px}
+footer{margin-top:30px;padding:35px 0 100px;border-top:1px solid #242424;text-align:center;color:#aaa}.footer-brand{font-size:22px;color:var(--cream);font-weight:900}.footer-brand span{color:var(--orange)}
+.drawer{position:fixed;right:0;top:0;width:min(430px,100%);height:100%;background:#0d0d0d;z-index:30;transform:translateX(105%);transition:.25s;box-shadow:-20px 0 60px #000;display:flex;flex-direction:column}.drawer.open{transform:translateX(0)}.drawer-head{padding:18px;border-bottom:1px solid #292929;display:flex;justify-content:space-between}.close{background:none;border:0;color:#fff;font-size:25px}.items{padding:15px;overflow:auto;flex:1}.item{border-bottom:1px solid #292929;padding:12px 0;display:flex;justify-content:space-between;gap:10px}.item small{color:#aaa;display:block;margin-top:4px}.qty button{width:28px;height:28px;border-radius:8px;border:1px solid #444;background:#181818;color:#fff}.drawer-foot{padding:15px;border-top:1px solid #292929}.total{display:flex;justify-content:space-between;font-size:22px;font-weight:900;margin-bottom:12px}.whats{display:block;text-align:center;background:#25d366;color:#062b14;text-decoration:none;padding:14px;border-radius:13px;font-weight:900}.empty{color:#888;text-align:center;padding:50px 10px}
+@media(max-width:600px){.hero{padding-top:28px}.grid{grid-template-columns:1fr 1fr}.pic{height:150px}.drink .pic{height:120px}.body{padding:11px}.body h3{font-size:16px}.desc{font-size:11px}.price{font-size:18px}.add{padding:10px;font-size:12px}}
+</style>
+</head>
+<body>
+<header><div class="wrap top">
+<img class="logo" src="img/logo.jpg" alt="Pub Beach Burg">
+<div class="brand"><b>PUB BEACH BURG</b><span>SALINÓPOLIS • PA</span></div>
+<button class="cart" onclick="openCart()">🛒 Pedido <span id="count">0</span></button>
+</div></header>
+
+<main>
+<div class="wrap hero">
+<img src="img/logo.jpg" alt="Logo Pub Beach Burg">
+<h1>Mais sabor da <span>brasa.</span></h1>
+<p>Hambúrguer artesanal • Delivery • Salinópolis</p>
+<div class="badges"><div class="badge">🥩 Blend artesanal 180g</div><div class="badge">🔥 Preparado na hora</div><div class="badge">🛵 Delivery</div></div>
+</div>
+
+<nav><div class="wrap tabs">
+<button class="tab active" onclick="show('burgers',this)">🍔 Hambúrgueres</button>
+<button class="tab" onclick="show('drinks',this)">🥤 Bebidas</button>
+<button class="tab" onclick="show('info',this)">📍 Delivery</button>
+</div></nav>
+
+<div class="wrap">
+<section id="burgers"><div class="section-title"><h2>🍔 Nossos burgers</h2><p>Escolha o seu</p></div><div class="grid">
+<article class="card"><div class="pic"><img src="img/pub-classico.jpg"></div><div class="body"><h3>Pub Clássico</h3><div class="desc">Pão brioche, carne artesanal, queijo cheddar, cebola caramelizada e molho especial.</div><div class="price">R$ 17,00</div><button class="add" onclick="add('Pub Clássico',17)">ADICIONAR</button></div></article>
+<article class="card"><div class="pic"><img src="img/pub-bacon.jpg"></div><div class="body"><h3>Pub Bacon</h3><div class="desc">Pão brioche, carne artesanal, cheddar, cebola caramelizada, bacon crocante e molho especial.</div><div class="price">R$ 19,00</div><button class="add" onclick="add('Pub Bacon',19)">ADICIONAR</button></div></article>
+<article class="card"><div class="pic"><img src="img/pub-calabresa.jpg"></div><div class="body"><h3>Pub Calabresa</h3><div class="desc">Pão brioche, carne artesanal, cheddar, cebola caramelizada, calabresa e molho especial.</div><div class="price">R$ 19,00</div><button class="add" onclick="add('Pub Calabresa',19)">ADICIONAR</button></div></article>
+<article class="card"><div class="pic"><img src="img/pub-calabacon.jpg"></div><div class="body"><h3>Pub Calabacon 🔥</h3><div class="desc">Pão brioche, carne artesanal, cheddar, cebola caramelizada, bacon crocante, calabresa e molho especial.</div><div class="price">R$ 21,00</div><button class="add" onclick="add('Pub Calabacon',21)">ADICIONAR</button></div></article>
+</div></section>
+
+<section id="drinks" style="display:none"><div class="section-title"><h2>🥤 Bebidas</h2><p>Combina com tudo</p></div><div class="grid">
+<article class="card drink"><div class="pic"><img src="img/cardapio-bebidas.jpg"></div><div class="body"><h3>Coca-Cola Lata 220ml</h3><div class="price">R$ 4,00</div><button class="add" onclick="add('Coca-Cola Lata 220ml',4)">ADICIONAR</button></div></article>
+<article class="card drink"><div class="pic"><img src="img/cardapio-bebidas.jpg"></div><div class="body"><h3>Coca-Cola Lata 350ml</h3><div class="price">R$ 6,00</div><button class="add" onclick="add('Coca-Cola Lata 350ml',6)">ADICIONAR</button></div></article>
+<article class="card drink"><div class="pic"><img src="img/cardapio-bebidas.jpg"></div><div class="body"><h3>Coca-Cola Zero 350ml</h3><div class="price">R$ 6,00</div><button class="add" onclick="add('Coca-Cola Zero 350ml',6)">ADICIONAR</button></div></article>
+<article class="card drink"><div class="pic"><img src="img/cardapio-bebidas.jpg"></div><div class="body"><h3>Coca-Cola 600ml</h3><div class="price">R$ 8,00</div><button class="add" onclick="add('Coca-Cola 600ml',8)">ADICIONAR</button></div></article>
+<article class="card drink"><div class="pic"><img src="img/cardapio-bebidas.jpg"></div><div class="body"><h3>Coca-Cola 1L PET</h3><div class="price">R$ 10,00</div><button class="add" onclick="add('Coca-Cola 1L PET',10)">ADICIONAR</button></div></article>
+<article class="card drink"><div class="pic"><img src="img/cardapio-bebidas.jpg"></div><div class="body"><h3>Fanta Laranja 350ml</h3><div class="price">R$ 6,00</div><button class="add" onclick="add('Fanta Laranja 350ml',6)">ADICIONAR</button></div></article>
+<article class="card drink"><div class="pic"><img src="img/cardapio-bebidas.jpg"></div><div class="body"><h3>Fanta Uva 350ml</h3><div class="price">R$ 6,00</div><button class="add" onclick="add('Fanta Uva 350ml',6)">ADICIONAR</button></div></article>
+</div></section>
+
+<section id="info" style="display:none"><div class="section-title"><h2>🛵 Delivery</h2></div>
+<div class="note"><b>Peça pelo cardápio e finalize pelo WhatsApp.</b><br><br>
+📍 Salinópolis — PA<br>
+📲 WhatsApp: (91) 99100-9087<br>
+📸 Instagram: @pubbeachburg<br><br>
+As informações de taxa, bairros atendidos, horário e formas de pagamento podem ser atualizadas conforme o funcionamento.
+</div></section>
+</div>
+</main>
+
+<footer><div class="wrap"><div class="footer-brand">PUB BEACH <span>BURG</span></div><p>Sabor, qualidade e atitude — à beira-mar! 🌴🔥</p></div></footer>
+
+<aside class="drawer" id="drawer"><div class="drawer-head"><b>🛒 Seu pedido</b><button class="close" onclick="closeCart()">×</button></div><div class="items" id="items"></div><div class="drawer-foot"><div class="total"><span>Total</span><span id="total">R$ 0,00</span></div><a class="whats" id="whats" href="#" target="_blank">ENVIAR PEDIDO NO WHATSAPP</a></div></aside>
+
+<script>
+let cart=[];
+const phone='5591991009087';
+function add(name,price){let x=cart.find(i=>i.name===name);if(x)x.qty++;else cart.push({name,price,qty:1});render();openCart()}
+function change(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);render()}
+function render(){
+ document.getElementById('count').textContent=cart.reduce((s,i)=>s+i.qty,0);
+ const box=document.getElementById('items'); box.innerHTML='';
+ if(!cart.length){box.innerHTML='<div class="empty">Seu pedido está vazio.<br>Escolha um burger para começar 🍔</div>'}
+ let total=0;
+ cart.forEach((it,i)=>{total+=it.price*it.qty;box.innerHTML+=`<div class="item"><div><b>${it.qty}x ${it.name}</b><small>R$ ${(it.price*it.qty).toFixed(2).replace('.',',')}</small></div><div class="qty"><button onclick="change(${i},-1)">−</button> <button onclick="change(${i},1)">+</button></div></div>`});
+ document.getElementById('total').textContent='R$ '+total.toFixed(2).replace('.',',');
+ let msg='🍔 *PEDIDO — PUB BEACH BURG*\\n\\n';
+ cart.forEach(it=>msg+=`${it.qty}x ${it.name} — R$ ${(it.price*it.qty).toFixed(2).replace('.',',')}\\n`);
+ msg+=`\\n*Total: R$ ${total.toFixed(2).replace('.',',')}*\\n\\n📍 Endereço: \\n💳 Pagamento: `;
+ document.getElementById('whats').href='https://wa.me/'+phone+'?text='+encodeURIComponent(msg);
+}
+function openCart(){document.getElementById('drawer').classList.add('open')}
+function closeCart(){document.getElementById('drawer').classList.remove('open')}
+function show(id,btn){
+ ['burgers','drinks','info'].forEach(x=>document.getElementById(x).style.display=x===id?'block':'none');
+ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));btn.classList.add('active');window.scrollTo({top:document.querySelector('nav').offsetTop-70,behavior:'smooth'});
+}
+render();
+</script>
+</body>
+</html>
